@@ -70,8 +70,8 @@
 (compile-if 
   (Type/GetType "System.Threading.Tasks.Task`1")
   (do 
-    (defn- fjtask [^|System.Func`1[System.Object]| f]
-      (|System.Threading.Tasks.Task`1[System.Object]|. f))
+    (defn- fjtask [f]
+      (|System.Threading.Tasks.Task`1[System.Object]|. (sys-func [System.Object] [] (f))))
 
     (defn- fjinvoke [f]
       (let [^|System.Threading.Tasks.Task`1[System.Object]| task (fjtask f)]
